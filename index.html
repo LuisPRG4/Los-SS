@@ -110,22 +110,47 @@
 
             <div id="clientes" class="tab-content card">
                 <h2>Gestión de Clientes</h2>
-                <label for="clientName" class="label-style">Nombre del Cliente:</label>
-                <input type="text" id="clientName" class="input-style" placeholder="Ej. Juan Pérez">
+                <p>Gestiona la información de tus clientes.</p>
 
-                <label for="clientContact" class="label-style">Contacto (Teléfono/Email):</label>
-                <input type="text" id="clientContact" class="input-style" placeholder="Ej. 555-1234, juan@example.com">
+                <div class="form-group">
+                    <label for="clientName" class="label-style">Nombre del Cliente:</label>
+                    <input type="text" id="clientName" placeholder="Ej: Juan Pérez" class="input-style">
+                </div>
+                <div class="form-group">
+                    <label for="clientAlias" class="label-style">Alias (Opcional):</label>
+                    <input type="text" id="clientAlias" placeholder="Ej: Yogurtería La Esquina" class="input-style">
+                </div>
+                <div class="form-group">
+                    <label for="clientContact" class="label-style">Contacto (Teléfono/Email):</label>
+                    <input type="text" id="clientContact" placeholder="Ej: 555-1234 / juan@email.com" class="input-style">
+                </div>
+                <div class="form-group">
+                    <label for="clientAddress" class="label-style">Dirección:</label>
+                    <input type="text" id="clientAddress" placeholder="Ej: Av. Principal, Calle 1, Nro 42" class="input-style">
+                </div>
+                <div class="form-group">
+                    <label for="clientNotes" class="label-style">Información Adicional (Notas):</label>
+                    <textarea id="clientNotes" rows="3" placeholder="Ej: Cliente frecuente, preferencias, historial de pedidos especiales." class="input-style"></textarea>
+                </div>
 
                 <div class="button-group">
                     <button class="btn-primary" id="addClient">Añadir Cliente</button>
-                    <button class="btn-secondary" id="updateClient">Actualizar Cliente</button>
-                    <button class="btn-danger" id="deleteSelectedClient">Eliminar Seleccionado</button>
+                    <button class="btn-secondary" id="updateClient" style="display: none;">Actualizar Cliente</button>
+                    <button class="btn-danger" id="deleteSelectedClient" style="display: none;">Eliminar Cliente Seleccionado</button>
+                    <button class="btn-secondary" id="clearClientFormBtn">Limpiar Formulario</button>
+                </div>
+                
+                <hr> <h3>Buscar y Filtrar Clientes</h3>
+                <div class="filter-section">
+                    <input type="text" id="searchClientName" placeholder="Buscar por Nombre o Alias" class="input-style">
+                    <button class="btn-primary" id="applyClientFilters">Buscar</button>
+                    <button class="btn-secondary" id="clearClientFilters">Limpiar Filtros</button>
                 </div>
 
                 <div class="data-list">
-                    <h3>Lista de Clientes:</h3>
+                    <h3>Listado de Clientes:</h3>
                     <ul id="clientList">
-                        <p>Cargando clientes...</p>
+                        <p>No hay clientes registrados.</p>
                     </ul>
                     <button class="btn-secondary" id="clearAllClients">Limpiar Todos los Clientes</button>
                 </div>
