@@ -78,6 +78,8 @@ const updateSaleButton = document.getElementById('updateSale');
 const deleteSelectedSaleButton = document.getElementById('deleteSelectedSale');
 const clearAllSalesButton = document.getElementById('clearAllSales');
 const totalSalesSummary = document.getElementById('totalSalesSummary');
+const salePaymentTypeInput = document.getElementById('salePaymentType'); // <--- AÑADE ESTA LÍNEA
+
 
 // Filtros de ventas
 const searchSaleProductInput = document.getElementById('searchSaleProduct');
@@ -100,7 +102,8 @@ const renderSales = (filteredSales = sales) => {
         li.dataset.id = sale.id;
         li.innerHTML = `
             <span>
-                Producto: ${sale.productName} | Cantidad: ${sale.quantity} | Precio Unitario: $${sale.unitPrice.toFixed(2)} | Total: $${(sale.quantity * sale.unitPrice).toFixed(2)} | Fecha: ${sale.date}
+                Producto: ${sale.productName} | Cantidad: ${sale.quantity} | Precio Unitario: $${sale.unitPrice.toFixed(2)} | Total: $${(sale.quantity * sale.unitPrice).toFixed(2)} | Fecha: ${sale.date} | 
+                Tipo: <span class="math-inline">\{sale\.paymentType ? \(sale\.paymentType \=\=\= 'contado' ? 'Contado' \: 'Crédito'\) \: 'N/A'\} 
             </span>
             <div class="item-actions">
                 <button class="btn-icon edit-sale" data-id="${sale.id}">✏️</button>
@@ -119,6 +122,7 @@ const addSale = () => {
     const productName = saleProductNameInput.value.trim();
     const quantity = parseInt(saleQuantityInput.value);
     const unitPrice = parseFloat(saleUnitPriceInput.value);
+    const paymentType = salePaymentTypeInput.value; // <--- AÑADE ESTA LÍNEA
 
     if (!productName || isNaN(quantity) || quantity <= 0 || isNaN(unitPrice) || unitPrice <= 0) {
         alert('Por favor, ingresa un nombre de producto, cantidad y precio unitario válidos.');
@@ -130,6 +134,7 @@ const addSale = () => {
         productName,
         quantity,
         unitPrice,
+        paymentType, // <--- AÑADE ESTA LÍNEA AL OBJETO newSale
         date: new Date().toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' })
     };
 
@@ -149,6 +154,7 @@ const editSale = (id) => {
         saleProductNameInput.value = sale.productName;
         saleQuantityInput.value = sale.quantity;
         saleUnitPriceInput.value = sale.unitPrice;
+        salePaymentTypeInput.value = sale.paymentType || 'contado'; // <--- AÑADE ESTA LÍNEA (establece 'contado' como predeterminado si no hay valor)
         addSaleButton.style.display = 'none';
         updateSaleButton.style.display = 'inline-block';
         deleteSelectedSaleButton.style.display = 'inline-block';
@@ -165,6 +171,7 @@ const updateSale = () => {
     const productName = saleProductNameInput.value.trim();
     const quantity = parseInt(saleQuantityInput.value);
     const unitPrice = parseFloat(saleUnitPriceInput.value);
+    const paymentType = salePaymentTypeInput.value; // <--- AÑADE ESTA LÍNEA
 
     if (!productName || isNaN(quantity) || quantity <= 0 || isNaN(unitPrice) || unitPrice <= 0) {
         alert('Por favor, ingresa un nombre de producto, cantidad y precio unitario válidos.');
@@ -179,6 +186,7 @@ const updateSale = () => {
             productName,
             quantity,
             unitPrice,
+            paymentType, // <--- AÑADE ESTA LÍNEA AL OBJETO
             date: sales[saleIndex].date // Mantener la fecha original
         };
         saveData('sales', sales);
@@ -221,6 +229,7 @@ const resetSaleForm = () => {
     saleProductNameInput.value = '';
     saleQuantityInput.value = '';
     saleUnitPriceInput.value = '';
+    salePaymentTypeInput.value = 'contado'; // <--- AÑADE ESTA LÍNEA
     addSaleButton.style.display = 'inline-block';
     updateSaleButton.style.display = 'none';
     deleteSelectedSaleButton.style.display = 'none';
