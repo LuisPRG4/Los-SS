@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestión de Ventas de Yogurt - Offline</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="lib/chart.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header-logo-container">
+            <img src="assets//logo/Chopo.png" alt="Logo de Gestión de Yogurt" class="app-logo">
+            <h1>LOS SS - SISTEMA DE GESTIÓN</h1>
+        </div>
+
+        <div class="tabs-container">
+            <div class="tab-buttons">
+                <button class="tab-button btn-primary active" data-tab="resumen">Resumen</button>
+                <button class="tab-button btn-secondary" data-tab="ventas">Ventas</button>
+                <button class="tab-button btn-secondary" data-tab="clientes">Clientes</button>
+                <button class="tab-button btn-secondary" data-tab="yogurt">Productos</button>
+                <button class="tab-button btn-secondary" data-tab="inventario">Inventario</button>
+                <button class="tab-button btn-secondary" data-tab="reportes">Reportes</button>
+            </div>
+
+            <div id="resumen" class="tab-content active card">
+                <h2>Resumen General del Negocio</h2>
+                <p>Aquí verás una visión rápida del estado actual de tu negocio de yogurt.</p>
+
+                <div class="summary-grid">
+                    <div class="summary-item card">
+                        <h3>Ventas Totales</h3>
+                        <p id="totalSalesSummaryResumen">$0.00</p>
+                    </div>
+                    <div class="summary-item card">
+                        <h3>Productos Vendidos</h3>
+                        <p id="totalUnitsSoldResumen">0 unidades</p>
+                    </div>
+                    <div class="summary-item card">
+                        <h3>Clientes Registrados</h3>
+                        <p id="totalClientsResumen">0</p>
+                    </div>
+                    <div class="summary-item card">
+                        <h3>Productos en Catálogo</h3>
+                        <p id="totalYogurtsResumen">0</p>
+                    </div>
+                    <div class="summary-item card">
+                        <h3>Artículos en Inventario</h3>
+                        <p id="totalInventoryItemsResumen">0 tipos</p>
+                    </div>
+                    <div class="summary-item card">
+                        <h3>Stock Total Actual</h3>
+                        <p id="currentTotalStockResumen">0 unidades</p>
+                    </div>
+                </div>
+
+                <div class="recent-activity card">
+                    <h3>Actividad Reciente</h3>
+                    <ul id="recentSalesList">
+                        <li>No hay actividad reciente.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="ventas" class="tab-content card">
+                <h2>Registrar Venta de Yogurt</h2>
+
+                <div class="filter-section">
+                    <label for="searchSaleProduct" class="label-style">Buscar Producto en Venta:</label>
+                    <input type="text" id="searchSaleProduct" class="input-style" placeholder="Buscar por nombre de producto">
+
+                    <label for="filterSaleStartDate" class="label-style">Fecha Inicio:</label>
+                    <input type="date" id="filterSaleStartDate" class="input-style">
+
+                    <label for="filterSaleEndDate" class="label-style">Fecha Fin:</label>
+                    <input type="date" id="filterSaleEndDate" class="input-style">
+
+                    <div class="button-group">
+                        <button class="btn-primary" id="applySaleFilters">Aplicar Filtros</button>
+                        <button class="btn-secondary" id="clearSaleFilters">Limpiar Filtros</button>
+                    </div>
+                </div>
+
+                <label for="saleProductName" class="label-style">Producto:</label>
+                <input type="text" id="saleProductName" class="input-style" placeholder="Ej. Yogurt Natural, Yogurt de Fresa">
+
+                <label for="saleQuantity" class="label-style">Cantidad (unidades):</label>
+                <input type="number" id="saleQuantity" class="input-style" placeholder="Ej. 1, 5, 10">
+
+                <label for="saleUnitPrice" class="label-style">Precio Unitario ($):</label>
+                <input type="number" id="saleUnitPrice" class="input-style" step="0.01" placeholder="Ej. 1.50, 2.75">
+
+                <div class="button-group">
+                    <button class="btn-primary" id="addSale">Registrar Venta</button>
+                    <button class="btn-secondary" id="updateSale">Actualizar Venta</button>
+                    <button class="btn-danger" id="deleteSelectedSale">Eliminar Seleccionada</button>
+                </div>
+
+                <div class="data-list">
+                    <h3>Historial de Ventas:</h3>
+                    <ul id="salesList">
+                        <p>Cargando ventas...</p>
+                    </ul>
+                    <p id="totalSalesSummary">Total de ventas: $0.00</p>
+                    <button class="btn-secondary" id="clearAllSales">Limpiar Todas las Ventas</button>
+                </div>
+            </div>
+
+            <div id="clientes" class="tab-content card">
+                <h2>Gestión de Clientes</h2>
+                <label for="clientName" class="label-style">Nombre del Cliente:</label>
+                <input type="text" id="clientName" class="input-style" placeholder="Ej. Juan Pérez">
+
+                <label for="clientContact" class="label-style">Contacto (Teléfono/Email):</label>
+                <input type="text" id="clientContact" class="input-style" placeholder="Ej. 555-1234, juan@example.com">
+
+                <div class="button-group">
+                    <button class="btn-primary" id="addClient">Añadir Cliente</button>
+                    <button class="btn-secondary" id="updateClient">Actualizar Cliente</button>
+                    <button class="btn-danger" id="deleteSelectedClient">Eliminar Seleccionado</button>
+                </div>
+
+                <div class="data-list">
+                    <h3>Lista de Clientes:</h3>
+                    <ul id="clientList">
+                        <p>Cargando clientes...</p>
+                    </ul>
+                    <button class="btn-secondary" id="clearAllClients">Limpiar Todos los Clientes</button>
+                </div>
+            </div>
+
+            <div id="yogurt" class="tab-content card">
+                <h2>Gestión de Productos de Yogurt</h2>
+                <label for="yogurtName" class="label-style">Nombre del Producto:</label>
+                <input type="text" id="yogurtName" class="input-style" placeholder="Ej. Yogurt Natural 500g">
+
+                <label for="yogurtFlavor" class="label-style">Sabor:</label>
+                <input type="text" id="yogurtFlavor" class="input-style" placeholder="Ej. Natural, Fresa, Durazno">
+
+                <label for="yogurtPrice" class="label-style">Precio Sugerido ($):</label>
+                <input type="number" id="yogurtPrice" class="input-style" step="0.01" placeholder="Ej. 1.80">
+
+                <div class="button-group">
+                    <button class="btn-primary" id="addYogurt">Añadir Producto</button>
+                    <button class="btn-secondary" id="updateYogurt">Actualizar Producto</button>
+                    <button class="btn-danger" id="deleteSelectedYogurt">Eliminar Seleccionado</button>
+                </div>
+
+                <div class="data-list">
+                    <h3>Productos de Yogurt:</h3>
+                    <ul id="yogurtList">
+                        <p>Cargando productos...</p>
+                    </ul>
+                    <button class="btn-secondary" id="clearAllYogurts">Limpiar Todos los Productos</button>
+                </div>
+            </div>
+
+            <div id="inventario" class="tab-content card">
+                <h2>Gestión de Inventario</h2>
+                <p>Gestiona el stock actual de tus productos de yogurt.</p>
+
+                <label for="inventoryProductName" class="label-style">Producto:</label>
+                <input type="text" id="inventoryProductName" class="input-style" placeholder="Nombre del producto en inventario">
+
+                <label for="inventoryQuantity" class="label-style">Cantidad (unidades):</label>
+                <input type="number" id="inventoryQuantity" class="input-style" placeholder="Cantidad de unidades">
+
+                <div class="button-group">
+                    <button class="btn-primary" id="addOrUpdateInventory">Añadir/Actualizar Stock</button>
+                    <button class="btn-danger" id="deleteInventoryItem">Eliminar Artículo de Inventario</button>
+                </div>
+
+                <div class="data-list">
+                    <h3>Stock Actual:</h3>
+                    <ul id="inventoryList">
+                        <p>Cargando inventario...</p>
+                    </ul>
+                    <button class="btn-secondary" id="clearAllInventory">Limpiar Todo el Inventario</button>
+                </div>
+            </div>
+
+            <div id="reportes" class="tab-content card">
+                <h2>Reportes y Análisis de Ventas</h2>
+                <p>Visualiza tus datos de ventas con gráficos dinámicos.</p>
+                <div class="button-group">
+                    <button class="btn-primary" id="generateReports">Generar Reportes</button>
+                </div>
+
+                <section class="charts-section">
+                    <div class="chart-container">
+                        <h3>Ventas por Producto</h3>
+                        <canvas id="barChart"></canvas>
+                    </div>
+
+                    <div class="chart-container">
+                        <h3>Distribución de Ventas (Valor)</h3>
+                        <canvas id="pieChart"></canvas>
+                    </div>
+
+                    <div class="chart-container">
+                        <h3>Ventas Diarias</h3>
+                        <canvas id="lineChart"></canvas>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

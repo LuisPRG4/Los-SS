@@ -1,0 +1,404 @@
+body {
+    font-family: sans-serif;
+    background-color: #1a202c;
+    color: #e2e8f0;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1000px; /* Aumentar el ancho para las pestañas */
+    width: 100%;
+    background-color: #2d3748;
+    border-radius: 0.75rem;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2, h3 {
+    color: #cbd5e0;
+    margin-bottom: 1rem;
+}
+
+/* --- Estilos para el Logo y Título del Encabezado --- */
+.header-logo-container {
+    display: flex; /* Permite que los elementos se coloquen uno al lado del otro */
+    align-items: center; /* Centra verticalmente el logo y el texto */
+    justify-content: center; /* Centra horizontalmente todo el contenedor */
+    margin-bottom: 2rem; /* Espacio debajo del encabezado */
+    padding-bottom: 1rem; /* Pequeño padding interno */
+    border-bottom: 1px solid #4a5568; /* Línea separadora sutil */
+}
+
+.app-logo {
+    width: 95px; /* Tamaño del logo. Ajusta según tus necesidades */
+    height: 95px; /* Asegura que el logo sea cuadrado si lo deseas */
+    margin-right: 15px; /* Espacio entre el logo y el título */
+    /* border-radius: 50%; Si quieres que el logo sea circular */
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); Efecto de sombra para que destaque */
+}
+
+.header-logo-container h1 {
+    margin: 0; /* Elimina el margen por defecto del h1 para un mejor control */
+    font-size: 2.2rem; /* Ajusta el tamaño del título si es necesario */
+    color: #0ea5e9; /* Un color que combine con el tema principal de tu app */
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Sombra sutil para el texto */
+}
+
+/* Opcional: Estilo para h1 general si deseas que sea diferente */
+h1 {
+    /* Puedes mantener aquí el estilo general de h1 si no quieres que el del header-logo-container lo sobrescriba completamente */
+}
+
+.card {
+    background-color: #242b3a;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* --- Estilos de Pestañas --- */
+.tabs-container {
+    margin-bottom: 2rem;
+}
+
+.tab-buttons {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los botones de pestaña se envuelvan */
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #4a5568; /* Línea separadora */
+    padding-bottom: 10px;
+}
+
+.tab-button {
+    padding: 0.75rem 1.25rem;
+    border: none;
+    border-radius: 0.5rem 0.5rem 0 0; /* Bordes redondeados solo arriba */
+    background-color: #4a5568; /* Color base para botones inactivos */
+    color: #cbd5e0;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+    outline: none; /* Eliminar el contorno al hacer clic */
+}
+
+.tab-button:hover {
+    background-color: #5a6a82;
+}
+
+.tab-button.active {
+    background-color: #0ea5e9; /* Color activo de la pestaña */
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    /* Mantener el botón activo un poco más elevado o con un borde inferior diferente */
+    border-bottom: 3px solid #0284c7; /* Un borde inferior para la pestaña activa */
+    padding-bottom: calc(0.75rem - 3px); /* Ajustar el padding para compensar el borde */
+}
+
+.tab-content {
+    display: none; /* Ocultar todas las pestañas por defecto */
+}
+
+.tab-content.active {
+    display: block; /* Mostrar solo la pestaña activa */
+}
+
+
+/* --- Estilos de Formulario y Botones (existentes) --- */
+.input-style {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #e2e8f0;
+    background-color: #4a5568;
+    background-clip: padding-box;
+    border: 1px solid #4a5568;
+    border-radius: 0.5rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    margin-bottom: 1rem;
+}
+
+/* Universal box-sizing para asegurar que padding y border no aumenten el tamaño final */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+.input-style:focus {
+    outline: none;
+    border-color: #0ea5e9;
+    box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.37);
+}
+
+.label-style {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #cbd5e0;
+    margin-bottom: 0.25rem;
+}
+
+.btn-primary, .btn-secondary, .btn-danger, .btn-icon, .btn-text {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 150ms ease-in-out;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.btn-primary {
+    background-color: #0ea5e9;
+    color: white;
+}
+.btn-primary:hover {
+    background-color: #0284c7;
+}
+
+.btn-secondary {
+    background-color: #475569;
+    color: white;
+}
+.btn-secondary:hover {
+    background-color: #64748b;
+}
+
+.btn-danger {
+    background-color: #dc2626;
+    color: white;
+}
+.btn-danger:hover {
+    background-color: #b91c1c;
+}
+
+.btn-icon {
+    padding: 0.5rem;
+    background-color: transparent;
+    color: #e2e8f0;
+}
+.btn-icon:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.btn-text {
+    background-color: transparent;
+    padding: 0.25rem 0.5rem;
+    color: #0ea5e9;
+}
+.btn-text:hover {
+    text-decoration: underline;
+}
+
+.disabled\:bg-slate-600:disabled {
+    background-color: #4a5568;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Lista de datos */
+.data-list ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 1.5rem; /* Espacio superior para la lista */
+}
+
+.data-list li {
+    background-color: #364052;
+    padding: 0.75rem 1rem;
+    border-radius: 0.4rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.data-list li.selected {
+    border-color: #0ea5e9;
+    box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.37);
+}
+
+/* --- Estilos de Gráficos (existentes) --- */
+.charts-section {
+    margin-top: 2rem;
+}
+
+.charts-section .chart-container {
+    background-color: #364052;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-top: 1.5rem;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.bar-chart-placeholder {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    width: 100%;
+    height: 100px;
+    border-bottom: 1px solid #5a6a82;
+    padding-bottom: 5px;
+    justify-content: space-around;
+}
+
+.bar-chart-placeholder .bar {
+    width: 30px;
+    border-radius: 3px 3px 0 0;
+}
+
+.pie-chart-placeholder {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    background-color: #e2e8f0;
+}
+
+.pie-chart-placeholder .pie-segment:nth-child(1) {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    transform-origin: 0% 50%;
+    transform: rotate(0deg) skewY(-30deg);
+    background-color: #dc2626;
+}
+
+.pie-chart-placeholder .pie-segment:nth-child(2) {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    transform-origin: 0% 50%;
+    transform: rotate(60deg) skewY(-30deg);
+    background-color: #b91c1c;
+}
+.pie-chart-placeholder .pie-segment:nth-child(3) {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    transform-origin: 0% 50%;
+    transform: rotate(120deg) skewY(-30deg);
+    background-color: #4a5568;
+}
+
+.line-chart-placeholder {
+    width: 100%;
+    height: 100px;
+    border: 1px solid #5a6a82;
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.line-chart-placeholder svg {
+    width: 95%;
+    height: 95%;
+}
+
+/* Estilos para la sección de Resumen */
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Columnas responsivas */
+    gap: 1.5rem; /* Espacio entre los elementos de la cuadrícula */
+    margin-top: 1.5rem;
+}
+
+.summary-item {
+    text-align: center;
+    padding: 1rem;
+    background-color: #364052; /* Usar el color de las listas de datos */
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.summary-item h3 {
+    margin-bottom: 0.5rem;
+    color: #cbd5e0;
+    font-size: 1.1rem;
+}
+
+.summary-item p {
+    font-size: 2rem; /* Tamaño grande para los números de resumen */
+    font-weight: bold;
+    color: #0ea5e9; /* Color primario para los números */
+}
+
+.recent-activity {
+    margin-top: 2rem;
+}
+
+.recent-activity h3 {
+    margin-bottom: 1rem;
+}
+
+.recent-activity ul {
+    list-style: none;
+    padding: 0;
+}
+
+.recent-activity li {
+    background-color: #364052;
+    padding: 0.75rem 1rem;
+    border-radius: 0.4rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #e2e8f0;
+}
+
+/* Estilos para la sección de filtros */
+.filter-section {
+    background-color: #242b3a; /* Mismo color de las tarjetas internas */
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #364052; /* Borde más sutil */
+}
+
+.filter-section .input-style {
+    background-color: #364052; /* Fondo más claro para los inputs de filtro */
+}
+
+.filter-section .button-group {
+    margin-top: 1rem;
+    justify-content: flex-start; /* Alinear botones a la izquierda */
+}
