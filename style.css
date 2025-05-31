@@ -402,3 +402,17 @@ h1 {
     margin-top: 1rem;
     justify-content: flex-start; /* Alinear botones a la izquierda */
 }
+
+/* Estilo para separar los botones de formulario */
+.client-form .btn-secondary {
+    margin-left: 0.5rem; /* Pequeño margen a la izquierda */
+}
+
+/* Asegurar que los botones de acción del formulario de cliente tengan espacio */
+.client-form .button-group button {
+    margin-right: 0.5rem; /* Espacio entre los botones dentro del grupo */
+}
+
+.client-form .button-group button:last-child {
+    margin-right: 0; /* Eliminar margen del último botón si no es necesario */
+}
