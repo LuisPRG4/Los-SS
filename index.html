@@ -173,6 +173,27 @@
                 <label for="yogurtPrice" class="label-style">Precio Sugerido ($):</label>
                 <input type="number" id="yogurtPrice" class="input-style" step="0.01" placeholder="Ej. 1.80">
 
+                <div class="form-group">
+                    <label for="yogurtAdditionalPrices" class="label-style">Precios Adicionales (opcional, ej: mayoreo, por caja):</label>
+                    <textarea id="yogurtAdditionalPrices" rows="2" placeholder="Ej: Precio por Mayor: $2.00, Precio por Docena: $22.00" class="input-style"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="yogurtExpirationDate" class="label-style">Fecha de Caducidad (próxima producción):</label>
+                    <input type="date" id="yogurtExpirationDate" class="input-style">
+                </div>
+
+                <div class="form-group">
+                    <label for="yogurtAdditionalInfo" class="label-style">Información Adicional:</label>
+                    <textarea id="yogurtAdditionalInfo" rows="3" placeholder="Ej: Ingredientes especiales, certificaciones, tipo de empaque." class="input-style"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="yogurtImage" class="label-style">Imagen del Yogurt:</label>
+                    <input type="file" id="yogurtImage" accept="image/*" class="input-style">
+                    <img id="currentYogurtImagePreview" src="#" alt="Previsualización de Imagen" style="max-width: 150px; max-height: 150px; margin-top: 10px; display: none;">
+                </div>
+
                 <div class="button-group">
                     <button class="btn-primary" id="addYogurt">Añadir Producto</button>
                     <button class="btn-secondary" id="updateYogurt">Actualizar Producto</button>
